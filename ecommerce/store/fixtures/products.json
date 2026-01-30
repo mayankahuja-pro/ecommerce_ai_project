@@ -1,0 +1,222 @@
+[
+  {
+    "model": "store.product",
+    "pk": 1,
+    "fields": {
+      "name": "Quantum Headphones",
+      "price": 199.99,
+      "description": "High-fidelity sound with noise-canceling technology.",
+      "image": "https://placehold.co/600x400?text=Quantum+Headphones",
+      "category": "Audio"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 2,
+    "fields": {
+      "name": "Ego Ergonomic Chair",
+      "price": 349.50,
+      "description": "Supportive lumbar design for long working hours.",
+      "image": "https://placehold.co/600x400?text=Ergo+Chair",
+      "category": "Furniture"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 3,
+    "fields": {
+      "name": "Smart Watch Series X",
+      "price": 249.00,
+      "description": "Track your fitness and notifications seamlessly.",
+      "image": "https://placehold.co/600x400?text=Smart+Watch",
+      "category": "Wearables"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 4,
+    "fields": {
+      "name": "Mechanical Keyboard",
+      "price": 120.00,
+      "description": "Tactile switches for the ultimate typing experience.",
+      "image": "https://placehold.co/600x400?text=Keyboard",
+      "category": "Peripherals"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 5,
+    "fields": {
+      "name": "UltraWide Monitor",
+      "price": 450.00,
+      "description": "34-inch curved display for immersive productivity.",
+      "image": "https://placehold.co/600x400?text=Monitor",
+      "category": "Peripherals"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 6,
+    "fields": {
+      "name": "Wireless Mouse",
+      "price": 45.99,
+      "description": "Precision tracking with a sleek, minimal design.",
+      "image": "https://placehold.co/600x400?text=Mouse",
+      "category": "Peripherals"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 7,
+    "fields": {
+      "name": "Portable SSD 1TB",
+      "price": 110.00,
+      "description": "Lightning-fast data transfer in your pocket.",
+      "image": "https://placehold.co/600x400?text=SSD",
+      "category": "Storage"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 8,
+    "fields": {
+      "name": "Desk Lamp LED",
+      "price": 35.00,
+      "description": "Adjustable brightness and color temperature.",
+      "image": "https://placehold.co/600x400?text=Lamp",
+      "category": "Accessories"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 9,
+    "fields": {
+      "name": "Bluetooth Speaker",
+      "price": 89.99,
+      "description": "Waterproof speaker with 20-hour battery life.",
+      "image": "https://placehold.co/600x400?text=Speaker",
+      "category": "Audio"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 10,
+    "fields": {
+      "name": "Webcam 4K",
+      "price": 150.00,
+      "description": "Crystal clear video for meetings and streaming.",
+      "image": "https://placehold.co/600x400?text=Webcam",
+      "category": "Video"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 11,
+    "fields": {
+      "name": "Laptop Stand",
+      "price": 29.99,
+      "description": "Aluminum foldable stand for better posture.",
+      "image": "https://placehold.co/600x400?text=Stand",
+      "category": "Accessories"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 12,
+    "fields": {
+      "name": "USB-C Hub",
+      "price": 55.00,
+      "description": "7-in-1 adapter for all your connectivity needs.",
+      "image": "https://placehold.co/600x400?text=Hub",
+      "category": "Accessories"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 13,
+    "fields": {
+      "name": "Noise Canceling Buds",
+      "price": 129.00,
+      "description": "Compact earbuds with massive sound.",
+      "image": "https://placehold.co/600x400?text=Earbuds",
+      "category": "Audio"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 14,
+    "fields": {
+      "name": "Gaming Controller",
+      "price": 65.00,
+      "description": "Wireless controller compatible with PC and Console.",
+      "image": "https://placehold.co/600x400?text=Peripherals",
+      "category": "Peripherals"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 15,
+    "fields": {
+      "name": "Microphone Pro",
+      "price": 175.00,
+      "description": "Studio-quality condenser microphone for creators.",
+      "image": "https://placehold.co/600x400?text=Mic",
+      "category": "Audio"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 16,
+    "fields": {
+      "name": "Smart Light Bulb",
+      "price": 19.99,
+      "description": "RGB bulb controllable via smartphone.",
+      "image": "https://placehold.co/600x400?text=Bulb",
+      "category": "Accessories"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 17,
+    "fields": {
+      "name": "Electric Standing Desk",
+      "price": 499.00,
+      "description": "Smooth motor height adjustment for your workspace.",
+      "image": "https://placehold.co/600x400?text=Desk",
+      "category": "Furniture"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 18,
+    "fields": {
+      "name": "Tablet Pencil",
+      "price": 99.00,
+      "description": "Pressure-sensitive stylus for digital artists.",
+      "image": "https://placehold.co/600x400?text=Pencil",
+      "category": "Accessories"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 19,
+    "fields": {
+      "name": "Power Bank 20k",
+      "price": 40.00,
+      "description": "Large capacity battery for long trips.",
+      "image": "https://placehold.co/600x400?text=Powerbank",
+      "category": "Power"
+    }
+  },
+  {
+    "model": "store.product",
+    "pk": 20,
+    "fields": {
+      "name": "External GPU Enclosure",
+      "price": 299.00,
+      "description": "Boost your laptop performance for gaming.",
+      "image": "https://placehold.co/600x400?text=eGPU",
+      "category": "Peripherals"
+    }
+  }
+]

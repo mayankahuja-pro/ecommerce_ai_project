@@ -1,0 +1,65 @@
+{% extends 'store/base.html' %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0 p-4">
+            <h2 class="mb-4 fw-bold">Your Shopping Cart 🛒</h2>
+            
+            {% if items %}
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-end">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        {% if "http" in item.product.image.name %}
+                                            <img src="{{ item.product.image.name }}" alt="{{ item.product.name }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
+                                        {% else %}
+                                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
+                                        {% endif %}
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-0 fw-bold">{{ item.product.name }}</h6>
+                                        <small class="text-muted">{{ item.product.category }}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge bg-light text-dark fs-6">{{ item.quantity }}</span>
+                            </td>
+                            <td class="text-end fw-bold">₹{{ item.product.price }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                <div>
+                    <h5 class="text-muted mb-0">Total Amount</h5>
+                    <h2 class="fw-bold mb-0">₹{{ total }}</h2>
+                </div>
+                <a href="/checkout/" class="btn btn-primary btn-lg px-5 shadow">Proceed to Checkout</a>
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <h3 class="text-muted">Your cart is empty.</h3>
+                <p class="mb-4">Time to start shopping!</p>
+                <a href="/" class="btn btn-primary rounded-pill px-4">Continue Shopping</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

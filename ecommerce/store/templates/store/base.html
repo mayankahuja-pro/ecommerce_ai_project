@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛒 Premium Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #f8f9fa;
+            --navbar-bg: #1a1a1a;
+            --accent-color: #ff4757;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+        }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--primary-bg);
+            color: #2d3436;
+        }
+        .navbar {
+            background-color: var(--navbar-bg) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .card {
+            border: none;
+            border-radius: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            background: var(--glass-bg);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+        }
+        .card img {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .card:hover img {
+            transform: scale(1.05);
+        }
+        .btn-primary {
+            background-color: #2d3436;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #000;
+            transform: scale(1.02);
+        }
+        .btn-like {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        .btn-like:hover {
+            transform: scale(1.2);
+        }
+        .btn-like.active {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            background: #fff5f6;
+        }
+        .badge-category {
+            background: rgba(0,0,0,0.05);
+            color: #636e72;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .price-tag {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #2d3436;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark px-4 py-3 sticky-top">
+    <div class="container">
+        <a class="navbar-brand fs-3" href="/">🛒 PremiumStore</a>
+        <div class="ms-auto d-flex align-items-center gap-3">
+            <a class="btn btn-outline-light rounded-pill px-4" href="/cart/">Cart</a> 
+            <a class="btn btn-light rounded-pill px-4" href="/like/">Favorites ❤️</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    {% block content %}{% endblock %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

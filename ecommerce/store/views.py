@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Cart, CartItem, Order
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
 from .recommender import recommend_products
 from .models import UserInteraction
 
 
-@login_required
+# @login_required
 def add_to_cart(request, product_id):
     cart, _ = Cart.objects.get_or_create(user=request.user)
     product = get_object_or_404(Product, id=product_id)
@@ -18,7 +18,7 @@ def add_to_cart(request, product_id):
     return redirect('cart')
 
 
-@login_required
+# @login_required
 def cart_view(request):
     cart, _ = Cart.objects.get_or_create(user=request.user)
     items = CartItem.objects.filter(cart=cart)
@@ -26,7 +26,7 @@ def cart_view(request):
     return render(request, 'store/cart.html', {'items': items, 'total': total})
 
 
-@login_required
+# @login_required
 def checkout(request):
     cart = get_object_or_404(Cart, user=request.user)
     items = CartItem.objects.filter(cart=cart)
@@ -53,7 +53,7 @@ def product_list(request):
         'liked_product_ids': liked_product_ids
     })
 
-@login_required
+# @login_required
 def like_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     interaction, created = UserInteraction.objects.get_or_create(
@@ -71,7 +71,7 @@ def like_product(request, product_id):
         
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
-@login_required
+# @login_required
 def liked_products(request):
     interactions = UserInteraction.objects.filter(user=request.user, liked=True)
     liked_products = [i.product for i in interactions]

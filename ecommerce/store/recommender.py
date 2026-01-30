@@ -2,10 +2,14 @@ from .models import Product, UserInteraction
 import numpy as np
 
 def recommend_products(user, top_n=4):
+    if not user.is_authenticated:
+        # For anonymous users, return featured or random products
+        return Product.objects.all().order_by('?')[:top_n]
+
     interactions = UserInteraction.objects.filter(user=user, liked=True)
 
     if not interactions.exists():
-        # Cold start → show popular or random
+        # Cold start for logged in users → show some products
         return Product.objects.all()[:top_n]
 
     liked_products = [i.product for i in interactions]

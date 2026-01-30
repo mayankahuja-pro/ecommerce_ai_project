@@ -18,8 +18,10 @@ def add_to_cart(request, product_id):
     return redirect('cart')
 
 
-@login_required
 def cart_view(request):
+    if not request.user.is_authenticated:
+        return render(request, 'store/cart.html', {'items': [], 'total': 0})
+    
     cart, _ = Cart.objects.get_or_create(user=request.user)
     items = CartItem.objects.filter(cart=cart)
     total = sum(item.product.price * item.quantity for item in items)
@@ -40,12 +42,13 @@ def checkout(request):
 
 def product_list(request):
     products = Product.objects.all()
-    recommendations = None
+    recommendations = recommend_products(request.user)
     liked_product_ids = []
 
     if request.user.is_authenticated:
-        recommendations = recommend_products(request.user)
-        liked_product_ids = UserInteraction.objects.filter(user=request.user, liked=True).values_list('product_id', flat=True)
+        liked_product_ids = UserInteraction.objects.filter(
+            user=request.user, liked=True
+        ).values_list('product_id', flat=True)
 
     return render(request, 'store/products.html', {
         'products': products,
@@ -71,8 +74,10 @@ def like_product(request, product_id):
         
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
-@login_required
 def liked_products(request):
+    if not request.user.is_authenticated:
+        return render(request, 'store/like.html', {'liked_products': []})
+        
     interactions = UserInteraction.objects.filter(user=request.user, liked=True)
     liked_products = [i.product for i in interactions]
     return render(request, 'store/like.html', {'liked_products': liked_products})

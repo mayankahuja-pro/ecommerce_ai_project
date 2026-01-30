@@ -1,10 +1,22 @@
 from .models import Product, UserInteraction
 import numpy as np
 
+# Try to import the Cython-optimized function
+try:
+    from .price_similarity import compute_similarity as cython_compute_similarity
+    HAS_CYTHON = True
+except (ImportError, ModuleNotFoundError):
+    HAS_CYTHON = False
+
+def python_compute_similarity(prices, avg_price):
+    """Fallback Python/NumPy implementation of price similarity."""
+    return np.abs(prices - avg_price)
+
 def recommend_products(request, top_n=4):
     user = request.user
     session_key = request.session.session_key
     
+    # 1. Get user interactions (Support both logged-in and guest users)
     if user.is_authenticated:
         interactions = UserInteraction.objects.filter(user=user, liked=True)
     elif session_key:
@@ -12,55 +24,38 @@ def recommend_products(request, top_n=4):
     else:
         interactions = UserInteraction.objects.none()
 
+    # 2. Cold Start: If no likes yet, show random products
     if not interactions.exists():
-        # Cold start → show popular or random
         return Product.objects.all().order_by('?')[:top_n]
 
+    # 3. Calculate Average Price of liked items
     liked_products = [i.product for i in interactions]
     liked_prices = np.array([p.price for p in liked_products])
-
     avg_price = liked_prices.mean()
 
-    # Recommend products with similar price range
-    recommendations = Product.objects.exclude(
+    # 4. Filter out items already liked
+    candidates = Product.objects.exclude(
         id__in=[p.id for p in liked_products]
-    ).order_by('price')
-
-    similar_products = sorted(
-        recommendations,
-        key=lambda p: abs(p.price - avg_price)
     )
+    
+    candidate_list = list(candidates)
+    if not candidate_list:
+        return []
 
-    return similar_products[:top_n]
+    # 5. Compute Similarity scores
+    prices = np.array([p.price for p in candidate_list], dtype=np.float64)
+    
+    if HAS_CYTHON:
+        try:
+            similarity_scores = cython_compute_similarity(prices, avg_price)
+        except Exception:
+            # Final fallback if Cython fails at runtime
+            similarity_scores = python_compute_similarity(prices, avg_price)
+    else:
+        similarity_scores = python_compute_similarity(prices, avg_price)
 
+    # 6. Sort and return top N
+    product_scores = list(zip(candidate_list, similarity_scores))
+    product_scores.sort(key=lambda x: x[1])
 
-
-
-
-# from .models import Product, UserInteraction
-# import numpy as np
-# from .price_similarity import compute_similarity
-
-# def recommend_products(user, top_n=4):
-#     interactions = UserInteraction.objects.filter(user=user, liked=True)
-
-#     if not interactions.exists():
-#         return Product.objects.all()[:top_n]
-
-#     liked_products = [i.product for i in interactions]
-#     avg_price = np.mean([p.price for p in liked_products])
-
-#     candidates = Product.objects.exclude(
-#         id__in=[p.id for p in liked_products]
-#     )
-
-#     prices = np.array([p.price for p in candidates], dtype=np.float64)
-
-#     # ⚡ CYTHON OPTIMIZED PART
-#     similarity_scores = compute_similarity(prices, avg_price)
-
-#     product_scores = list(zip(candidates, similarity_scores))
-#     product_scores.sort(key=lambda x: x[1])
-
-#     return [p[0] for p in product_scores[:top_n]]
-
+    return [p[0] for p in product_scores[:top_n]]

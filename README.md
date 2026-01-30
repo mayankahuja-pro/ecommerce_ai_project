@@ -2,6 +2,10 @@
 
 SmartCommerce AI is a modern, high-performance e-commerce platform built with **Django**, featuring a personalized **AI Recommendation System** optimized with **Cython** for lightning-fast performance.
 
+
+https://github.com/user-attachments/assets/47d6992b-e1e6-43a6-9915-6aabdbdf5c0a
+
+
 ---
 
 ## 🌟 Key Features
